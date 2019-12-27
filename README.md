@@ -23,13 +23,13 @@ based sets. It does not support mixed-type sets, so, for example, you cannot add
 To make a new empty set, either call the appropriate constructor for the type you want the set to hold. To convert a slice of 
 strings, integers, or float64s, pass the slice to ToSet which will return a set of the appropriate type.  
 
-'''go
+```go
 letters := []string{"a", "b", "c", "d", "e"}
 set := simpleset.NewStringSet()
 for _, i := range letters {
 	// Can also pass the whole slice to Extend
 	set.Add(i)
 }
-'''
+```
 
 For documentation on additional methods, follow the GoDocs link above.  
