@@ -1,8 +1,8 @@
-[![Build Status](https://travis-ci.com/icwells/go-tools.svg?branch=master)](https://travis-ci.com/icwells/go-tools)
 
-# go-tools  
 
-## Commonly used GO functions (intended for personal use, but feel free to use)  
+# simpleset  
+
+## Simple python-style set for string, int, and float64 types.  
 
 Copyright 2019 by Shawn Rupp
 
@@ -13,9 +13,7 @@ Copyright 2019 by Shawn Rupp
 ## Description  
 
 ## Installation  
-	go get github.com/icwells/go-tools/dataframe  
-	go get github.com/icwells/go-tools/iotools  
-	go get github.com/icwells/go-tools/strarray  
+	go get github.com/icwells/simpleset   
 
 ### Set  
 The set struct is a simple python-style set for strings.  
