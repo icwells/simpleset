@@ -1,4 +1,4 @@
-// simpleset python-style set for string, int, and float64 types
+// Package simpleset python-style set for string, int, and float64 types
 package simpleset
 
 import (
@@ -6,7 +6,7 @@ import (
 	"sort"
 )
 
-// Defines set for string, int, and float64.
+// Set defines set for string, int, and float64.
 type Set struct {
 	t rune
 	s map[string]bool
@@ -14,7 +14,7 @@ type Set struct {
 	f map[float64]bool
 }
 
-// Returns pointer to empty string set
+// NewStringSet returns pointer to empty string set
 func NewStringSet() *Set {
 	var s Set
 	s.t = 's'
@@ -22,7 +22,7 @@ func NewStringSet() *Set {
 	return &s
 }
 
-// Returns pointer to empty integer set
+// NewIntSet returns pointer to empty integer set
 func NewIntSet() *Set {
 	var s Set
 	s.t = 'i'
@@ -30,7 +30,7 @@ func NewIntSet() *Set {
 	return &s
 }
 
-// Returns pointer to empty float64 set
+// NewFloatSet returns pointer to empty float64 set
 func NewFloatSet() *Set {
 	var s Set
 	s.t = 'f'
@@ -38,7 +38,7 @@ func NewFloatSet() *Set {
 	return &s
 }
 
-// Converts slice of strings, integers, or float64 to apprpriate set.
+// ToSet converts slice of strings, integers, or float64 to apprpriate set.
 func ToSet(v []interface{}) (*Set, error) {
 	var ret *Set
 	var err error
@@ -58,7 +58,7 @@ func ToSet(v []interface{}) (*Set, error) {
 	return ret, err
 }
 
-// Returns sorted slice of strings from set.
+// ToStringSlice returns sorted slice of strings from set.
 func (s *Set) ToStringSlice() []string {
 	var ret []string
 	for k := range s.s {
@@ -68,7 +68,7 @@ func (s *Set) ToStringSlice() []string {
 	return ret
 }
 
-// Returns sorted slice of integers from set.
+// ToIntSlice returns sorted slice of integers from set.
 func (s *Set) ToIntSlice() []int {
 	var ret []int
 	for k := range s.i {
@@ -78,7 +78,7 @@ func (s *Set) ToIntSlice() []int {
 	return ret
 }
 
-// Returns sorted slice of integers from set.
+// ToFloatSlice returns sorted slice of integers from set.
 func (s *Set) ToFloatSlice() []float64 {
 	var ret []float64
 	for k := range s.f {
@@ -88,7 +88,7 @@ func (s *Set) ToFloatSlice() []float64 {
 	return ret
 }
 
-// Returns length of set.
+// Length returns length of set.
 func (s *Set) Length() int {
 	var ret int
 	switch s.t {
@@ -102,7 +102,7 @@ func (s *Set) Length() int {
 	return ret
 }
 
-// Adds new value to set.
+// Add adds new value to set.
 func (s *Set) Add(v interface{}) {
 	switch s.t {
 	case 's':
@@ -114,14 +114,14 @@ func (s *Set) Add(v interface{}) {
 	}
 }
 
-// Adds all elements of slice to set.
+// Extend adds all elements of slice to set.
 func (s *Set) Extend(v []interface{}) {
 	for _, i := range v {
 		s.Add(i)
 	}
 }
 
-// Returns true if value is in set.
+// InSet returns true if value is in set.
 func (s *Set) InSet(v interface{}) bool {
 	var ret bool
 	switch s.t {
@@ -135,7 +135,7 @@ func (s *Set) InSet(v interface{}) bool {
 	return ret
 }
 
-// Removes value from set.
+// Pop removes value from set.
 func (s *Set) Pop(v interface{}) {
 	if s.InSet(v) {
 		switch s.t {

@@ -1,4 +1,5 @@
-
+[![Build Status](https://travis-ci.org/icwells/simpleset.svg?branch=master)](https://travis-ci.org/icwells/simpleset)
+[![GoDoc](https://godoc.org/github.com/icwells/simpleset?status.svg)](https://godoc.org/github.com/icwells/simpleset)
 
 # simpleset  
 
@@ -8,36 +9,27 @@ Copyright 2019 by Shawn Rupp
 
 1. [Description](#Description)
 2. [Installation](#Installation)  
-3. [Set](#Set)  
+3. [Usage](#Usage)  
 
 ## Description  
+simpleset provides a straightforward set similar to a python set. It supports string, integer, and float64 
+based sets. It does not support mixed-type sets, so, for example, you cannot add an integer to a string set.  
 
 ## Installation  
+
 	go get github.com/icwells/simpleset   
 
-### Set  
-The set struct is a simple python-style set for strings.  
+### Usage  
+To make a new empty set, either call the appropriate constructor for the type you want the set to hold. To convert a slice of 
+strings, integers, or float64s, pass the slice to ToSet which will return a set of the appropriate type.  
 
-#### strarray.NewSet() Set
-Initializes new set.  
+'''go
+letters := []string{"a", "b", "c", "d", "e"}
+set := simpleset.NewStringSet()
+for _, i := range letters {
+	// Can also pass the whole slice to Extend
+	set.Add(i)
+}
+'''
 
-#### strarray.ToSet(s []string) Set  
-Converts slice of strings to set.  
-
-#### set.Length()  
-Returns length of set.  
-
-#### set.Add(value string)  
-Adds string value to set.  
-
-#### set.Extend(v []string)  
-Adds all elements of slice to set.  
-
-#### set.Pop(v string)  
-Removes v from set.  
-
-#### set.InSet(value string)  
-Reurns true if value is in the set. Returns false if it is not.  
-
-#### set.ToSlice() []string  
-Returns set as a sorted string slice.
+For documentation on additional methods, follow the GoDocs link above.  

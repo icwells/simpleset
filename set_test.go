@@ -49,5 +49,7 @@ func TestSet(t *testing.T) {
 			evaluateLength(t, s.Length(), l)
 			evaluateBool(t, s.InSet(i), false)
 		}
+		s.Extend(cases[idx])
+		evaluateLength(t, s.Length(), len(cases[idx]))
 	}
 }
