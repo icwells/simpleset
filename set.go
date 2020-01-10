@@ -54,7 +54,7 @@ func ToSet(v []interface{}) (*Set, error) {
 	case float64:
 		ret = NewFloatSet()
 	default:
-		err = errors.New("Slice must be strings, integers, or float64.")
+		err = errors.New("Slice must be strings, integers, or float64")
 	}
 	for _, i := range v {
 		ret.Add(i)
@@ -88,7 +88,7 @@ func (s *Set) ToIntSlice() ([]int, error) {
 	var ret []int
 	var err error
 	if s.t != 'i' {
-		err = fmt.Errorf("Cannot convert %s set to int slice.", s.types[s.t])
+		err = fmt.Errorf("Cannot convert %s set to int slice", s.types[s.t])
 	} else {
 		for k := range s.i {
 			ret = append(ret, k)
@@ -103,7 +103,7 @@ func (s *Set) ToFloatSlice() ([]float64, error) {
 	var ret []float64
 	var err error
 	if s.t != 'f' {
-		err = fmt.Errorf("Cannot convert %s set to float slice.", s.types[s.t])
+		err = fmt.Errorf("Cannot convert %s set to float slice", s.types[s.t])
 	} else {
 		for k := range s.f {
 			ret = append(ret, k)
@@ -139,15 +139,15 @@ func (s *Set) checkType(v interface{}) error {
 	case float64:
 		t = 'f'
 	default:
-		err = errors.New("Value must be string, integer, or float64.")
+		err = errors.New("Value must be string, integer, or float64")
 	}
 	if err == nil && t != s.t {
-		err = fmt.Errorf("%s submitted to %s set.", s.types[t], s.types[s.t])
+		err = fmt.Errorf("%s submitted to %s set", s.types[t], s.types[s.t])
 	}
 	return err
 }
 
-// Add adds new value to set. Reutrns an error if v is of the wrong type
+// Add adds new value to set. Reutrns an error if v is of the wrong type.
 func (s *Set) Add(v interface{}) error {
 	err := s.checkType(v)
 	if err == nil {
