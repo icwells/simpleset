@@ -39,15 +39,17 @@ func TestSet(t *testing.T) {
 		evaluateLength(t, s.Length(), 0)
 		for idx, i := range c {
 			s.Add(i)
+			inset, _ := s.InSet(i)
 			evaluateLength(t, s.Length(), idx+1)
-			evaluateBool(t, s.InSet(i), true)
+			evaluateBool(t, inset, true)
 		}
 		l := s.Length()
 		for _, i := range c {
 			s.Pop(i)
 			l--
+			inset, _ := s.InSet(i)
 			evaluateLength(t, s.Length(), l)
-			evaluateBool(t, s.InSet(i), false)
+			evaluateBool(t, inset, false)
 		}
 		s.Extend(cases[idx])
 		evaluateLength(t, s.Length(), len(cases[idx]))
