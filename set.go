@@ -8,7 +8,7 @@ import (
 	"strconv"
 )
 
-// Set defines set for string, int, and float64.
+// Set defines sets for string, int, and float64.
 type Set struct {
 	t     rune
 	s     map[string]bool
@@ -17,7 +17,7 @@ type Set struct {
 	types map[rune]string
 }
 
-// NewStringSet returns pointer to empty string set
+// NewStringSet returns pointer to empty string set.
 func NewStringSet() *Set {
 	var s Set
 	s.t = 's'
@@ -26,7 +26,7 @@ func NewStringSet() *Set {
 	return &s
 }
 
-// NewIntSet returns pointer to empty integer set
+// NewIntSet returns pointer to empty integer set.
 func NewIntSet() *Set {
 	var s Set
 	s.t = 'i'
@@ -34,7 +34,7 @@ func NewIntSet() *Set {
 	return &s
 }
 
-// NewFloatSet returns pointer to empty float64 set
+// NewFloatSet returns pointer to empty float64 set.
 func NewFloatSet() *Set {
 	var s Set
 	s.t = 'f'
