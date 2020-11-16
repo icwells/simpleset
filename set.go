@@ -62,6 +62,18 @@ func ToSet(v []interface{}) (*Set, error) {
 	return ret, err
 }
 
+// Clear removes all entries from set.
+func (s *Set) Clear() {
+	switch s.t {
+	case 's':
+		s.s = make(map[string]bool)
+	case 'i':
+		s.i = make(map[int]bool)
+	case 'f':
+		s.f = make(map[float64]bool)
+	}
+}
+
 // ToStringSlice returns sorted slice of strings from set. Converts integers and floats to string if needed.
 func (s *Set) ToStringSlice() []string {
 	var ret []string
