@@ -31,6 +31,7 @@ func NewIntSet() *Set {
 	var s Set
 	s.t = 'i'
 	s.i = make(map[int]bool)
+	s.types = map[rune]string{'s': "string", 'i': "int", 'f': "float64"}
 	return &s
 }
 
@@ -39,6 +40,7 @@ func NewFloatSet() *Set {
 	var s Set
 	s.t = 'f'
 	s.f = make(map[float64]bool)
+	s.types = map[rune]string{'s': "string", 'i': "int", 'f': "float64"}
 	return &s
 }
 
