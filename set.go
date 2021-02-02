@@ -44,24 +44,31 @@ func NewFloatSet() *Set {
 	return &s
 }
 
-// ToSet converts slice of strings, integers, or float64 to apprpriate set.
-func ToSet(v []interface{}) (*Set, error) {
+// Copy returns a deep copy of the set.
+func (s *Set) Copy() *Set {
 	var ret *Set
-	var err error
-	switch v[0].(type) {
-	case string:
+	switch s.t {
+	case 's':
 		ret = NewStringSet()
-	case int:
+		for _, i := range s.ToStringSlice() {
+			ret.Add(i)
+		}
+	case 'i':
 		ret = NewIntSet()
-	case float64:
+		l, _ := s.ToIntSlice()
+		for _, i := range l {
+			ret.Add(i)
+		}
+	case 'f':
 		ret = NewFloatSet()
-	default:
-		err = errors.New("Slice must be strings, integers, or float64")
+		l, _ := s.ToFloatSlice()
+		for _, i := range l {
+			ret.Add(i)
+		}
 	}
-	for _, i := range v {
-		ret.Add(i)
-	}
-	return ret, err
+	ret.t = s.t
+	ret.types = s.types
+	return ret
 }
 
 // Clear removes all entries from set.
@@ -116,11 +123,11 @@ func (s *Set) ToIntSlice() ([]int, error) {
 func (s *Set) ToFloatSlice() ([]float64, error) {
 	var ret []float64
 	var err error
-	if s.t != 'f' {
+	if s.t == 's' {
 		err = fmt.Errorf("Cannot convert %s set to float slice", s.types[s.t])
 	} else {
 		for k := range s.f {
-			ret = append(ret, k)
+			ret = append(ret, float64(k))
 		}
 		sort.Float64s(ret)
 	}
