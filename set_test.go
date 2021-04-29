@@ -51,7 +51,26 @@ func TestSet(t *testing.T) {
 			evaluateLength(t, s.Length(), l)
 			evaluateBool(t, inset, false)
 		}
-		s.Extend(cases[idx])
+		switch idx {
+		case 0:
+			var row []string
+			for _, i := range cases[idx] {
+				row = append(row, i.(string))
+			}
+			s.ExtendString(row)
+		case 1:
+			var row []int
+			for _, i := range cases[idx] {
+				row = append(row, i.(int))
+			}
+			s.ExtendInt(row)
+		case 2:
+			var row []float64
+			for _, i := range cases[idx] {
+				row = append(row, i.(float64))
+			}
+			s.ExtendFloat(row)
+		}
 		evaluateLength(t, s.Length(), len(cases[idx]))
 	}
 }

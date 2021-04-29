@@ -184,18 +184,6 @@ func (s *Set) Add(v interface{}) error {
 	return err
 }
 
-// Extend adds all elements of slice to set.
-func (s *Set) Extend(v []interface{}) error {
-	var err error
-	for _, i := range v {
-		err = s.Add(i)
-		if err != nil {
-			break
-		}
-	}
-	return err
-}
-
 // InSet returns true if value is in set.
 func (s *Set) InSet(v interface{}) (bool, error) {
 	var ret bool
